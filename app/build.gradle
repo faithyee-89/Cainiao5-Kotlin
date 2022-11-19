@@ -1,0 +1,47 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+apply from: '../dependencies.gradle'
+
+android {
+
+
+    namespace 'com.cniao5.app'
+    defaultConfig {
+        applicationId "com.cniao5.app"
+    }
+}
+
+dependencies {
+
+    //根据是否独立运行，将模块作为apk还是module
+    if (!singleModule.toBoolean()) {
+        //其他模块作为app运行的话，就不能依赖库作为lib用
+        implementation project(path: ':mine')
+        implementation project(path: ':course')
+        implementation project(path: ':study')
+        implementation project(path: ':home')
+        implementation project(path: ':login')
+    }
+    implementation project('::service')
+
+    //今日头条的适配方案
+    implementation 'me.jessyan:autosize:1.2.1'
+
+    implementation 'com.mcxiaoke.packer-ng:helper:2.0.1'
+}
+//
+//apply plugin: 'packer'
+//
+//packer {
+//    archiveNameFormat = '${buildType}-v${versionName}-${channel}'
+//    archiveOutput = new File(project.rootProject.buildDir, "apks")
+//    channelList = ['huawei', 'google', 'xiaomi', 'oppo', 'vivo', 'meizu']
+////    channelFile = new File(project.rootDir, "markets.txt")
+////    channelMap = [
+////            "Cat" : project.rootProject.file("channels/cat.txt"),
+////            "Dog" : project.rootProject.file("channels/dog.txt"),
+////            "Fish": project.rootProject.file("channels/channels.txt")
+////    ]
+//}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>js交互android</title>
+</head>
+<body>
+
+<button onclick="postStr()">调用安卓方法</button>
+
+<input id="aaa"/>
+
+<script type="text/javascript">
+
+        function postStr(){
+            var rtn = cniaoApp.getAppToken();
+            document.getElementById("aaa").value=rtn;
+        }
+
+
+
+</script>
+</body>
+</html>
